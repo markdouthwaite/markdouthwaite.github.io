@@ -1,0 +1,445 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.14.1 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Reservoir Computing: Turning almost any object into a computer - Mark Douthwaite</title>
+<meta name="description" content="Reservoir computers exploit the physical properties of a material in its natural state to do part of a computation. This contrasts with the current digital computing model of changing a material’s properties to perform computations. For example, to create modern microchips we alter the crystal structure of silicon. A reservoir computer could, in principle, be made from a piece of silicon (or any number of other materials) without these design modifications.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Mark Douthwaite">
+<meta property="og:title" content="Reservoir Computing: Turning almost any object into a computer">
+<meta property="og:url" content="http://localhost:4000/_posts/2016-10-11-ReservoirComputers/">
+
+
+  <meta property="og:description" content="Reservoir computers exploit the physical properties of a material in its natural state to do part of a computation. This contrasts with the current digital computing model of changing a material’s properties to perform computations. For example, to create modern microchips we alter the crystal structure of silicon. A reservoir computer could, in principle, be made from a piece of silicon (or any number of other materials) without these design modifications.">
+
+
+
+
+
+  <meta name="twitter:site" content="@markldouthwaite">
+  <meta name="twitter:title" content="Reservoir Computing: Turning almost any object into a computer">
+  <meta name="twitter:description" content="Reservoir computers exploit the physical properties of a material in its natural state to do part of a computation. This contrasts with the current digital computing model of changing a material’s properties to perform computations. For example, to create modern microchips we alter the crystal structure of silicon. A reservoir computer could, in principle, be made from a piece of silicon (or any number of other materials) without these design modifications.">
+  <meta name="twitter:url" content="http://localhost:4000/_posts/2016-10-11-ReservoirComputers/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2018-12-01T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/_posts/2016-10-11-ReservoirComputers/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Mark Douthwaite",
+      "url": "http://localhost:4000",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Mark Douthwaite Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">Mark Douthwaite</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/projects/" >Projects</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="https://pbs.twimg.com/profile_images/948096982865805312/IhNiTFCj_400x400.jpg" alt="Mark Douthwaite" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Mark Douthwaite</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Artificial Intelligence Engineer
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Manchester, UK</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:mark@douthwaite.io" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="http://mark.douthwaite.io" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/markdouthwaite" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/markdouthwaite/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Reservoir Computing: Turning almost any object into a computer">
+    <meta itemprop="description" content="Reservoir computers exploit the physical properties of a material in its natural state to do part of a computation. This contrasts with the current digital computing model of changing a material’s properties to perform computations. For example, to create modern microchips we alter the crystal structure of silicon. A reservoir computer could, in principle, be made from a piece of silicon (or any number of other materials) without these design modifications.">
+    <meta itemprop="datePublished" content="December 01, 2018">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Reservoir Computing: Turning almost any object into a computer
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><img src="https://www.calacademy.org/sites/default/files/assets/images/Education_Images/TYE_Images/earthswater_waterdrop_usdanrcs1200x900.jpg" alt="droplet" /></p>
+
+<p>The latest chip in the iPhone 7 has 3.3 billion transistors packed into a piece of silicon around the size of a small coin. But the trend for smaller, increasingly powerful computers could be coming to an end. Silicon-based chips are rapidly reaching a point at which the laws of physics prevent them being any smaller. There are also some important limitations to what silicon-based devices can do that mean there is a strong argument for looking at other ways to power computers.</p>
+
+<p>Perhaps the most well-known alternative researchers are looking at is quantum computers, which manipulate the properties of the chips in a different way to traditional digital machines. But there is also the possibilty of using alternative materials – potentially any material or physical system – as computers to perform calculations, without the need to manipulate electrons like silicon chips do. And it turns out these could be even better for developing artificial intelligence than existing computers.</p>
+
+<p>The idea is commonly known as “reservoir computing” and came from attempts to develop computer networks modelled on the brain. It involves the idea that we can tap into the behaviour of physical systems – anything from a bucket of water to blobs of plastic laced with carbon nanotubes – in order to harness their natural computing power.</p>
+
+<h2 id="input-and-output">Input and output</h2>
+
+<p>Reservoir computers exploit the physical properties of a material in its natural state to do part of a computation. This contrasts with the current digital computing model of changing a material’s properties to perform computations. For example, to create modern microchips we alter the crystal structure of silicon. A reservoir computer could, in principle, be made from a piece of silicon (or any number of other materials) without these design modifications.</p>
+
+<p>The basic idea is to stimulate a material in some way and learn to measure how this affects it. If you can work out how you get from the input stimulation to the output change, you will effectively have a calculation that you can then use as part of a range of computations. Unlike with traditional computer chips that depend on the position of electrons, the specific arrangement of the particles in the material isn’t important. Instead we just need to observe certain overall properties that let us measure the output change in the material.</p>
+
+<p>For example, one team of researchers has built a simple reservoir computer out of a bucket of water. They demonstrated that, after stimulating the water with mechanical probes, they could train a camera watching the water’s surface to read the distinctive ripple patterns that formed. They then worked out the calculation that linked the probe movements with the ripple pattern, and then used it to perform some simple logical operations. Fundamentally, the water itself was transforming the input from the probes into a useful output –- and that is the great insight.</p>
+
+<p><img src="https://images.theconversation.com/files/141201/original/image-20161011-3894-1kxax9j.jpg?ixlib=rb-1.1.0&amp;q=30&amp;auto=format&amp;w=600&amp;h=428&amp;fit=crop&amp;dpr=2" alt="Generic Brain Image" /></p>
+
+<h2 id="general-purpose-brain-cells">General purpose brain cells</h2>
+
+<p>It turns out that this idea of reservoir computing aligns with recent neuroscience research that discovered parts of the brain appear to be “general-purpose”. These areas are predominantly made up of collections of neurons that are only loosely ordered yet can still support cognitive function in more specialised parts of the brain, helping to make it more efficient. As with the computer, if this reservoir of neurons is stimulated with a specific signal it will respond in a very characteristic way, and this response can help perform computations.</p>
+
+<p>For example, recent work suggests that when we hear or see something, one general part of the brain is stimulated by sound or light. The response of the neurons in that area of the brain is then read by another more specialised area of the brain.</p>
+
+<p>Research indicates that reservoir computers could be extremely robust and computationally powerful and, in theory, could effectively carry out an infinite number of functions. In fact, simulated reservoirs have already become very popular in some aspects of artificial intelligence thanks to precisely these properties. For example, systems using reservoir methods for making stock-market predictions have indicated that they outperform many conventional artificial intelligence technologies. In part, this is because it turns out to be much easier to train AI that harnesses the power of a reservoir than one that does not.</p>
+
+<p>Ultimately, this is still a relatively new technology and a good deal of research remains to be done into its capabilities and implications. But it is already clear that there are a huge number of potential applications of this type of technology both in AI and more broadly. This could include anything from analysing and processing real-time data to image/pattern recognition and controlling robots.</p>
+
+<p><em>Originally posted on The Conversation, <a href="https://theconversation.com/theres-a-way-to-turn-almost-any-object-into-a-computer-and-it-could-cause-shockwaves-in-ai-62235">here</a> in collaboration with Matt Dale.</em></p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#artificial-intelligence" class="page__taxonomy-item" rel="tag">artificial intelligence</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#engineering" class="page__taxonomy-item" rel="tag">engineering</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2018-12-01T00:00:00+00:00">December 01, 2018</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=markldouthwaite&text=Reservoir+Computing%3A+Turning+almost+any+object+into+a+computer%20http%3A%2F%2Flocalhost%3A4000%2F_posts%2F2016-10-11-ReservoirComputers%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F_posts%2F2016-10-11-ReservoirComputers%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=http%3A%2F%2Flocalhost%3A4000%2F_posts%2F2016-10-11-ReservoirComputers%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F_posts%2F2016-10-11-ReservoirComputers%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/MarklDouthwaite" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/markdouthwaite" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2018 Mark Douthwaite. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

@@ -1,5 +1,5 @@
 ---
-title: "Part 1: TQDM - Utilities for Data Scientists"
+title: "Python Utilities for Data Scientists - Part 1: tqdm"
 layout: single
 author_profile: true
 date: 2018-12-01 
