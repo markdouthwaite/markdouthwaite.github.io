@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-12-01T18:27:13+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mark Douthwaite</title><subtitle>Blogs, thoughts and noise.</subtitle><author><name>Mark Douthwaite</name></author><entry><title type="html">Reservoir Computing: Turning almost any object into a computer</title><link href="http://localhost:4000/ReservoirComputers/" rel="alternate" type="text/html" title="Reservoir Computing: Turning almost any object into a computer" /><published>2018-12-01T00:00:00+00:00</published><updated>2018-12-01T00:00:00+00:00</updated><id>http://localhost:4000/ReservoirComputers</id><content type="html" xml:base="http://localhost:4000/ReservoirComputers/">&lt;p&gt;&lt;img src=&quot;https://www.calacademy.org/sites/default/files/assets/images/Education_Images/TYE_Images/earthswater_waterdrop_usdanrcs1200x900.jpg&quot; alt=&quot;droplet&quot; /&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-12-29T22:24:57+00:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Mark Douthwaite</title><subtitle>Blogs, thoughts and noise.</subtitle><author><name>Mark Douthwaite</name></author><entry><title type="html">Reservoir Computing: Turning almost any object into a computer</title><link href="http://localhost:4000/ReservoirComputers/" rel="alternate" type="text/html" title="Reservoir Computing: Turning almost any object into a computer" /><published>2018-12-01T00:00:00+00:00</published><updated>2018-12-01T00:00:00+00:00</updated><id>http://localhost:4000/ReservoirComputers</id><content type="html" xml:base="http://localhost:4000/ReservoirComputers/">&lt;p&gt;&lt;img src=&quot;https://www.calacademy.org/sites/default/files/assets/images/Education_Images/TYE_Images/earthswater_waterdrop_usdanrcs1200x900.jpg&quot; alt=&quot;droplet&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The latest chip in the iPhone 7 has 3.3 billion transistors packed into a piece of silicon around the size of a small coin. But the trend for smaller, increasingly powerful computers could be coming to an end. Silicon-based chips are rapidly reaching a point at which the laws of physics prevent them being any smaller. There are also some important limitations to what silicon-based devices can do that mean there is a strong argument for looking at other ways to power computers.&lt;/p&gt;
 
@@ -60,4 +60,85 @@
 
 &lt;figure&gt;&lt;img src=&quot;http://mark.douthwaite.io/wp-content/uploads/2018/11/Screenshot-2018-12-01-at-12.41.27.png&quot; sizes=&quot;(max-width: 1024px) 100vw, 1024px&quot; alt=&quot;&quot; width=&quot;1024&quot; height=&quot;104&quot; /&gt;&lt;figcaption&gt;Example output from `tqdm`&lt;/figcaption&gt;&lt;/figure&gt;
 
-&lt;p&gt;Technically, the &lt;code class=&quot;highlighter-rouge&quot;&gt;tqdm.pandas&lt;/code&gt; method monkey patches the &lt;code class=&quot;highlighter-rouge&quot;&gt;progress_apply&lt;/code&gt; method onto Pandas data structures, giving them a modified version of the commonly used &lt;code class=&quot;highlighter-rouge&quot;&gt;apply&lt;/code&gt; method. Practically, when we call the &lt;code class=&quot;highlighter-rouge&quot;&gt;progress_apply&lt;/code&gt; method, the package wraps the standard Pandas ‘apply’ method with a tqdm progress bar. This can come in really handy when you’re processing large data frames!&lt;/p&gt;</content><author><name>Mark Douthwaite</name></author><category term="data science" /><category term="python" /><summary type="html">Data Scientists can sometimes make life difficult for themselves simply because the focus of their work is relatively narrow in comparison to the capabilities of a language like Python. This series of posts looks at general-purpose packages that may save Data Scientists a fair bit of time.</summary></entry></feed>
+&lt;p&gt;Technically, the &lt;code class=&quot;highlighter-rouge&quot;&gt;tqdm.pandas&lt;/code&gt; method monkey patches the &lt;code class=&quot;highlighter-rouge&quot;&gt;progress_apply&lt;/code&gt; method onto Pandas data structures, giving them a modified version of the commonly used &lt;code class=&quot;highlighter-rouge&quot;&gt;apply&lt;/code&gt; method. Practically, when we call the &lt;code class=&quot;highlighter-rouge&quot;&gt;progress_apply&lt;/code&gt; method, the package wraps the standard Pandas ‘apply’ method with a tqdm progress bar. This can come in really handy when you’re processing large data frames!&lt;/p&gt;</content><author><name>Mark Douthwaite</name></author><category term="data science" /><category term="python" /><summary type="html">Data Scientists can sometimes make life difficult for themselves simply because the focus of their work is relatively narrow in comparison to the capabilities of a language like Python. This series of posts looks at general-purpose packages that may save Data Scientists a fair bit of time.</summary></entry><entry><title type="html">Reading List 2018</title><link href="http://localhost:4000/ReadingList2018/" rel="alternate" type="text/html" title="Reading List 2018" /><published>2018-12-01T00:00:00+00:00</published><updated>2018-12-01T00:00:00+00:00</updated><id>http://localhost:4000/ReadingList2018</id><content type="html" xml:base="http://localhost:4000/ReadingList2018/">&lt;h2 id=&quot;a-quickish-word-about-books&quot;&gt;A Quick(ish) Word About Books&lt;/h2&gt;
+
+&lt;p&gt;I think there is something profoundly healthy and ‘enlightening’ about reading long-form content, both fiction and non-fiction, that is not present in short-form content like many blogs (the irony, I know!), news articles and, to some extent, academic papers. I worry – maybe wrongly – that our current standard mechanisms for acquiring and ingesting information act to provide us with a huge number of paths to a relatively small number of narrow and somewhat anaemic sources of information.&lt;/p&gt;
+
+&lt;p&gt;This has been driven home in recent years through direct exposure to the noise-making machinery that drives a not-insubstantial proportion of the internet. The sheer number of websites and social media accounts dedicated to re-branding, re-posting and generally amplifying content that is typically poorly researched and often sensationalised into bite-size 800-word-or-less chunks is quite disheartening. It sometimes seems like the entire apparatus is targeting the reader’s subconscious world rather than their conscious one.&lt;/p&gt;
+
+&lt;p&gt;That’s where books can be great. At the outset, the reader enters into a relationship with the author. By committing to reading their book, we essentially agree to spend an extended period of time in the author’s company as they set out their narrative or discuss their ideas. We can get a sense for who the author is, and often a more holistic perspective on both who they are, their motives and &lt;em&gt;how&lt;/em&gt; they’re trying to get us (the reader) to think. We also get more time and content to process and reason about, giving us a richer, more in-depth grasp of the subject or themes we’re being shown. Sometimes – maybe most of the time – you simply cannot beat a good book. They are &lt;em&gt;investments&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;This brings me to this post. A few years ago I noticed I’d got out of the habit of reading long-form content regularly. I recall in that particular year I read only two or three books. The following year I set myself a target to read at least one book a month, and gradually this has crept up to something like 1.5 books a month presently. That’s still not as many as I’d like, but I’m in it for the long haul – hopefully I’ll get there!&lt;/p&gt;
+
+&lt;p&gt;I wanted to highlight another point here too: I love working in software and specifically in my own little bit of AI. But that doesn’t mean I should spend every spare minute reading the latest papers and little else. We need to strive to be rounded, ethical and conscious of broader issues. That means looking outside our little silos, trying to understand other perspectives and actively searching for challenging work, and/or actively reading seminal work that we take for granted as knowing or not needing to read. That also means that non-scientific work can be very important too, including fictional works.&lt;/p&gt;
+
+&lt;p&gt;I realise this perspective isn’t limited to just people working in AI, and I don’t think this is controversial or original, but I raise it as I have encountered many professionals in the commercial and research sectors that – in my opinion – focus too narrowly on minutiae that ultimately inadvertently limits their capabilities. That’s why I thought I’d put my reading list for the last year, and some books I’m expecting to read over the next year down. Hopefully there’s some books of interest in there too!&lt;/p&gt;
+
+&lt;h2 id=&quot;top-5-books-of-2018&quot;&gt;Top 5 Books of 2018&lt;/h2&gt;
+
+&lt;p&gt;Here are my top five favourite books from 2018 in no particular order:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Pale Fire&lt;/strong&gt;
+  &lt;small&gt;&lt;em&gt;V. Nabokov, 1962&lt;/em&gt;&lt;/small&gt;
+  &lt;br /&gt;A novel split between a 999 line poem accompanied by a long literary commentary, this book probably doesn’t sound like a particularly gripping read. However, these two primary elements combine to produce one of the most unconventional and compelling novels I’ve ever read. If you’re a fan of meta-fiction, you should definitely give this a go. This is a literary equivalent to the films that demand to be re-watched to discover new details and cross-references.
+  &lt;br /&gt;&lt;a href=&quot;https://www.waterstones.com/book/pale-fire/vladimir-nabokov/mary-mccarthy/9780141185262&quot;&gt;Waterstones (UK)&lt;/a&gt;, &lt;a href=&quot;https://www.amazon.co.uk/Pale-Fire-Penguin-Modern-Classics/dp/0141185260&quot;&gt;Amazon&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;The Fall of the House of Usher and Other Writings&lt;/strong&gt; 
+  &lt;small&gt;&lt;em&gt;E. A. Poe, 1839&lt;/em&gt;&lt;/small&gt;
+  &lt;br /&gt;Prior to reading this collection of Poe’s writings, I’d never been directly exposed to Poe’s work. I’d come across links elsewhere (in Lovecraft’s work, for example), and these links had intrigued me, but I never quite got around to actually reading any of his work. This collection of stories is good, though the quality and clarity of some pieces does vary here and there. The titular short-story was a standout. The imagery and atmosphere created by Poe was for me almost crystalline, and I still have lingering images of some of the events over six months later. This is true of a couple of the other stories in this collection too (The Pendulum and The Masque of the Red Death being particular favourites).
+  &lt;br /&gt;&lt;a href=&quot;https://www.waterstones.com/book/the-fall-of-the-house-of-usher-and-other-writings/edgar-allan-poe/harland-miller/9780141439815&quot;&gt;Waterstones (UK)&lt;/a&gt;, &lt;a href=&quot;https://www.amazon.co.uk/House-Usher-Writings-Penguin-Classics/dp/0141439815&quot;&gt;Amazon&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;The Iliad&lt;/strong&gt;
+  &lt;small&gt;&lt;em&gt;Homer, circa 800BCE&lt;/em&gt;&lt;/small&gt;
+  &lt;br /&gt;&lt;em&gt;The Iliad&lt;/em&gt; is one of those books that you essentially know the core themes and narrative without realising it, simply because so many later works draw &lt;em&gt;very&lt;/em&gt; heavily from it. For it’s historical significance alone it is worth a read – but it’s a great bit of storytelling too. There’s also an interesting link to Guy Deutscher’s &lt;em&gt;Through the Language Glass&lt;/em&gt;. That book is also worth a look if you’re interested in language and cognition.
+  &lt;br /&gt;&lt;a href=&quot;https://www.waterstones.com/book/the-iliad/homer/martin-hammond/9780140444445&quot;&gt;Waterstones (UK)&lt;/a&gt;, &lt;a href=&quot;https://www.amazon.co.uk/Penguin-Classics-Homer-Iliad/dp/0140444440&quot;&gt;Amazon&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Bhagavad Gita&lt;/strong&gt; 
+  &lt;small&gt;&lt;em&gt;Anonymous, 300BCE-100CE&lt;/em&gt;&lt;/small&gt;
+  &lt;br /&gt;This book is actually a 700 verse Sanskrit scripture that is a subset of one of the great Hindu epics: The &lt;em&gt;Mahabharata&lt;/em&gt;. It describes the discussions of the ancient Hindu prince Arjuna and Krishna, his charioteer (who is also an avatar of Lord Vishnu). The narrative revolves around a number of philosophical points related ostensibly to the rationale for Arjuna to go to war, but also links closely to more generic insights into other human struggles too. The climax of the narrative introduces some fascinating imagery around Time and Divinity that will stay with me for a while.
+  &lt;br /&gt;&lt;a href=&quot;https://www.waterstones.com/book/the-bhagavad-gita/simon-brodbeck/laurie-l-patton/9780140447903&quot;&gt;Waterstones (UK)&lt;/a&gt;, &lt;a href=&quot;https://www.amazon.co.uk/Bhagavad-Gita-Penguin-Classics/dp/0140449183&quot;&gt;Amazon&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Neuromancer&lt;/strong&gt; 
+  &lt;small&gt;&lt;em&gt;W. Gibson, 1984&lt;/em&gt;&lt;/small&gt;
+  &lt;br /&gt;I was torn on whether to include this book in my top 5. In many ways Ursula Le Guin’s  &lt;em&gt;The Left Hand of Darkness&lt;/em&gt; is a more polished book that explores some still quite unconventional ideas in a very interesting way, and it may be better deserving of the spot. However, I am a &lt;em&gt;big&lt;/em&gt; fan of cyberpunk, and somehow this book simply resonated with me more at the time. Plus, alongside Blade Runner, this book kickstarted the cyberpunk aesthetic, so it’s a must read for me for that reason alone.
+  &lt;br /&gt;&lt;a href=&quot;https://www.waterstones.com/book/neuromancer/william-gibson/9781473217386&quot;&gt;Waterstones (UK)&lt;/a&gt;, &lt;a href=&quot;https://www.amazon.co.uk/Neuromancer-S-F-MASTERWORKS-William-Gibson/dp/1473217385&quot;&gt;Amazon&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;honourable-mentions-for-2018&quot;&gt;Honourable Mentions for 2018&lt;/h2&gt;
+
+&lt;p&gt;So I had a hard time picking a top 5, on a different day any one of these may have made it too:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Through the Language Glass&lt;/strong&gt; - &lt;em&gt;G. Deutscher&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;The Myth of Sisyphus&lt;/strong&gt; - &lt;em&gt;A. Camus&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;The Thing on the Doorstep&lt;/strong&gt; - &lt;em&gt;H. P. Lovecraft&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;The Left Hand of Darkness&lt;/strong&gt; - &lt;em&gt;U. Le Guin&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;The Prose Edda&lt;/strong&gt; - &lt;em&gt;S. Sturluson&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;East of Eden&lt;/strong&gt; - &lt;em&gt;J. Steinbeck&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;It Can’t Happen Here&lt;/strong&gt; - &lt;em&gt;S. Lewis&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;The Art of Meditation&lt;/strong&gt; - &lt;em&gt;M. Ricard&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Commandant of Auschwitz&lt;/strong&gt; - &lt;em&gt;R. Hoess&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;A Gentleman in Moscow&lt;/strong&gt; - &lt;em&gt;A. Towles&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;The Saga of Gunnlaug Serpent-Tongue&lt;/strong&gt; - &lt;em&gt;Anonymous&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Clean Code&lt;/strong&gt; - &lt;em&gt;R. Martin&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;reading-list-so-far-for-2019&quot;&gt;Reading List (So Far!) for 2019&lt;/h2&gt;
+
+&lt;p&gt;And finally, here’s some of the books I’m &lt;em&gt;currently&lt;/em&gt; planning on reading in 2019:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;strong&gt;Gödel, Escher, Bach&lt;/strong&gt; - &lt;em&gt;D. Hofstadter&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Metamorphosis and Other Stories&lt;/strong&gt; - &lt;em&gt;F. Kafka&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Concepts of Modern Mathematics&lt;/strong&gt; - &lt;em&gt;I. Stewart&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;The Complete Poems&lt;/strong&gt; - &lt;em&gt;S. T. Coleridge&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;The Aeneid&lt;/strong&gt; - &lt;em&gt;Virgil&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Star Maker&lt;/strong&gt; - &lt;em&gt;O. Stapleton&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;The Outsider&lt;/strong&gt; - &lt;em&gt;A. Camus&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;The Odyssey&lt;/strong&gt; - &lt;em&gt;Homer&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;The Republic&lt;/strong&gt; - &lt;em&gt;Plato&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;History of Western Philosophy&lt;/strong&gt; - &lt;em&gt;B. Russell&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;An Enquiry Concerning Human Understanding&lt;/strong&gt; - &lt;em&gt;D. Hume&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;We Were The Future&lt;/strong&gt; - &lt;em&gt;Y. Newman&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;The Undiscovered Self&lt;/strong&gt; - &lt;em&gt;C. G. Jung&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Six Not So Easy Pieces&lt;/strong&gt; - &lt;em&gt;R. Feynman&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Life 3.0&lt;/strong&gt; - &lt;em&gt;M. Tegmark&lt;/em&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Paradise Lost&lt;/strong&gt; - &lt;em&gt;J. Milton&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;</content><author><name>Mark Douthwaite</name></author><category term="books" /><category term="education" /><summary type="html">I've decided to jump on the bandwagon and give a list of my favourite books of 2019. There's also some thoughts on the importance of books more generally too.</summary></entry></feed>
