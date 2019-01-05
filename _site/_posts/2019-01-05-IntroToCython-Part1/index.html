@@ -1,0 +1,610 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.14.1 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Introduction to Cython - Part 1: Getting Started - Mark Douthwaite</title>
+<meta name="description" content="Python is slow. Use C or C++ if you need to do high-performance computing. That’s the common wisdom. But Cython can let us write code in nearly pure Python and can yield huge speed boosts. It also lets us call C/C++ code directly from Python. This can be a huge productivity boost too.">
+
+
+
+<meta property="og:type" content="article">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="Mark Douthwaite">
+<meta property="og:title" content="Introduction to Cython - Part 1: Getting Started">
+<meta property="og:url" content="http://localhost:4000/_posts/2019-01-05-IntroToCython-Part1/">
+
+
+  <meta property="og:description" content="Python is slow. Use C or C++ if you need to do high-performance computing. That’s the common wisdom. But Cython can let us write code in nearly pure Python and can yield huge speed boosts. It also lets us call C/C++ code directly from Python. This can be a huge productivity boost too.">
+
+
+
+
+
+  <meta name="twitter:site" content="@markldouthwaite">
+  <meta name="twitter:title" content="Introduction to Cython - Part 1: Getting Started">
+  <meta name="twitter:description" content="Python is slow. Use C or C++ if you need to do high-performance computing. That’s the common wisdom. But Cython can let us write code in nearly pure Python and can yield huge speed boosts. It also lets us call C/C++ code directly from Python. This can be a huge productivity boost too.">
+  <meta name="twitter:url" content="http://localhost:4000/_posts/2019-01-05-IntroToCython-Part1/">
+
+  
+    <meta name="twitter:card" content="summary">
+    
+  
+
+  
+
+
+
+  <meta property="article:published_time" content="2019-01-05T00:00:00+00:00">
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/_posts/2019-01-05-IntroToCython-Part1/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Mark Douthwaite",
+      "url": "http://localhost:4000",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="Mark Douthwaite Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">Mark Douthwaite</a>
+        <ul class="visible-links"><li class="masthead__menu-item">
+              <a href="/about/" >About</a>
+            </li><li class="masthead__menu-item">
+              <a href="/projects/" >Projects</a>
+            </li></ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+
+
+<div itemscope itemtype="https://schema.org/Person">
+
+  
+    <div class="author__avatar">
+      
+
+      
+        <img src="https://pbs.twimg.com/profile_images/948096982865805312/IhNiTFCj_400x400.jpg" alt="Mark Douthwaite" itemprop="image">
+      
+    </div>
+  
+
+  <div class="author__content">
+    
+      <h3 class="author__name" itemprop="name">Mark Douthwaite</h3>
+    
+    
+      <p class="author__bio" itemprop="description">
+        Artificial Intelligence Engineer
+      </p>
+    
+  </div>
+
+  <div class="author__urls-wrapper">
+    <button class="btn btn--inverse">Follow</button>
+    <ul class="author__urls social-icons">
+      
+        <li itemprop="homeLocation" itemscope itemtype="https://schema.org/Place">
+          <i class="fas fa-fw fa-map-marker-alt" aria-hidden="true"></i> <span itemprop="name">Manchester, UK</span>
+        </li>
+      
+
+      
+        
+          
+            <li><a href="mailto:mark@douthwaite.io" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-envelope-square" aria-hidden="true"></i> Email</a></li>
+          
+        
+          
+            <li><a href="http://mark.douthwaite.io" rel="nofollow noopener noreferrer"><i class="fas fa-fw fa-link" aria-hidden="true"></i> Website</a></li>
+          
+        
+          
+        
+          
+        
+          
+            <li><a href="https://github.com/markdouthwaite" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+          
+        
+          
+        
+          
+            <li><a href="https://www.linkedin.com/in/markdouthwaite/" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i> LinkedIn</a></li>
+          
+        
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      
+
+      <!--
+  <li>
+    <a href="http://link-to-whatever-social-network.com/user/" itemprop="sameAs" rel="nofollow noopener noreferrer">
+      <i class="fas fa-fw" aria-hidden="true"></i> Custom Social Profile Link
+    </a>
+  </li>
+-->
+    </ul>
+  </div>
+</div>
+
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Introduction to Cython - Part 1: Getting Started">
+    <meta itemprop="description" content="Python is slow. Use C or C++ if you need to do high-performance computing. That’s the common wisdom. But Cython can let us write code in nearly pure Python and can yield huge speed boosts. It also lets us call C/C++ code directly from Python. This can be a huge productivity boost too.">
+    <meta itemprop="datePublished" content="January 05, 2019">
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Introduction to Cython - Part 1: Getting Started
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <h2 id="introduction">Introduction</h2>
+
+<p>Python is one of the most popular programming languages currently in use. It’s often credited as being a highly productive language, user-friendly that is backed up by an extensive, mature and (generally) well maintained set of tools that can effectively service user demands across a wide range of fields. Python has enjoyed some popularity in scientific computing for quite a while now. This popularity has exploded in recent years with the adoption of Python as the de facto language of choice for a significant chunk of Artificial Intelligence (AI) research.</p>
+
+<p>As positive as the general outlook for Python is at the moment, Python has some quite serious deficiencies in certain applications. Perhaps the most serious deficiency is the performance of most Python language implementations. Pure Python is often <em>horrendously</em> slow. So slow, in fact, that many of the aforementioned scientific computing and AI tools are actually forced to wrap higher-performance code in languages such as C, C++ and Fortran in Python wrappers, and expose this code as user-friendly Python modules.</p>
+
+<p>For Python programmers with little experience of these other languages, it might seem like a daunting task to port a Python implementation of some algorithm into C or C++ in order to get it to a point where their prototype implementation is fast enough to be useful for a given application. That’s where Cython can come in <em>very</em> useful. Cython is designed to make writing high-performance extensions for Python programs as simple as writing Python code itself.</p>
+
+<h2 id="what-is-cython">What is Cython?</h2>
+
+<p>Technically, Cython is a compiler for <em>both</em> Python and the Cython programming language. The Cython programming language is a near-complete superset of Python itself. Practically, this means that almost all Python code is valid Cython code – you can generally drop your Python code into the Cython compiler and have it work straight out-of-the-box. This raises a first important point: to use Cythonised code, you must compile your Cython modules. For those familiar with using interpreted languages, this process can seem a little odd, and sometimes can be quite confusing. We’ll look at how to compile Cython modules briefly in this post, and in more detail in future posts, but for now it is enough to know that Cython takes your Cython module, uses it to generate some efficient C or C++ code and then compiles this into a binary that is accessible as Python module.</p>
+
+<p>This general process is enhanced by a number of additional features provided by the Cython language. The most notable of these is the introduction of optional static type declarations. The Cython compiler can use these type declarations to dramatically improve the performance of compiled Cython code. Furthermore, Cython provides support for calling C/C++ code directly within a Cython module. This means we can integrate our Python application with pre-existing C/C++ code quite easily, or even call Python code from within C/C++ code. Finally, Cython also allows us to disable Python’s Global Interpreter Lock (GIL), which can yield still greater performance boosts. Each of these capabilities will be touched on in future posts.</p>
+
+<h2 id="using-cython">Using Cython</h2>
+
+<p>Enough of my waffling, let’s write some Cython. It’s worth noting that I’m assuming the reader is familiar with Python and how to package and install their own Python modules. If you’re not sure how to do this, there’s a great guide <a href="">here</a>. The code for this post is available <a href="">here</a>, and has an accompanying notebook <a href="">here</a> too. The examples use Python &gt;= 3.5.</p>
+
+<p>To start, we’re going to look at a very simple calculation: computing the Fibonacci sequence up to an arbitrary value <code class="highlighter-rouge">n</code>. Here is a pure-Python function that does this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># fibonacci_example/fibonacci.py
+</span><span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+    <span class="k">return</span> <span class="n">b</span>
+</code></pre></div></div>
+
+<p>Let’s assume this is some computation we’ve identified as being a bottleneck for our application. To begin, our minimal Python package might have a structure like:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+-- fibonacci_example
+|   +-- __init__.py
+|   +-- fibonacci.py
++-- setup.py
+</code></pre></div></div>
+
+<p>A first step can be to drop this function into a Cython module. Cython source files are denoted with the <code class="highlighter-rouge">.pyx</code> extension. Let’s update our package structure to look like:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+-- fibonacci_example
+|   +-- __init__.py
+|   +-- fibonacci.py
+|   +-- fast
+|       +-- __init__.py
+|       +-- fibonacci.pyx
++-- setup.py
+</code></pre></div></div>
+
+<p>Inside the <code class="highlighter-rouge">fibonacci.pyx</code> file, we can simply copy our original function, so our new file looks like:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># fibonacci_example/fast/fibonacci.pyx
+</span><span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+    <span class="k">return</span> <span class="n">b</span>
+</code></pre></div></div>
+
+<p>Pure Python! Next, we need to compile our new chunk of Cython code. To do this, we need to define our Cython extensions and Python’s setup tools will handle the compilation step. Our <code class="highlighter-rouge">setup.py</code> file looks like:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">Cython.Build</span> <span class="kn">import</span> <span class="n">cythonize</span>
+<span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">Extension</span><span class="p">,</span> <span class="n">setup</span><span class="p">,</span> <span class="n">find_packages</span>
+
+
+<span class="k">def</span> <span class="nf">os_path</span><span class="p">(</span><span class="n">import_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">ext</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="s">"""
+    Build the path to a module from it's import path.
+    """</span>
+
+    <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="o">*</span><span class="n">import_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">"."</span><span class="p">))</span><span class="o">+</span><span class="n">ext</span>
+
+
+<span class="k">def</span> <span class="nf">define_cython_extensions</span><span class="p">(</span><span class="o">*</span><span class="n">extensions</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
+                             <span class="n">link_args</span><span class="p">:</span> <span class="nb">list</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                             <span class="n">compile_args</span><span class="p">:</span> <span class="nb">list</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
+                             <span class="n">language</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s">"c"</span><span class="p">,</span> 
+                             <span class="n">file_ext</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s">".pyx"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
+    <span class="s">"""
+    Build a list of Cython extension modules.
+    """</span>
+
+    <span class="n">modules</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">extension</span> <span class="ow">in</span> <span class="n">extensions</span><span class="p">:</span>
+        <span class="n">modules</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Extension</span><span class="p">(</span><span class="n">extension</span><span class="p">,</span>
+                       <span class="p">[</span><span class="n">os_path</span><span class="p">(</span><span class="n">extension</span><span class="p">,</span> <span class="n">file_ext</span><span class="p">)],</span>
+                       <span class="n">language</span><span class="o">=</span><span class="n">language</span><span class="p">,</span>
+                       <span class="n">extra_compile_args</span><span class="o">=</span><span class="n">compile_args</span><span class="p">,</span>
+                       <span class="n">extra_link_args</span><span class="o">=</span><span class="n">link_args</span><span class="p">,</span>
+                       <span class="n">include_dirs</span><span class="o">=</span><span class="p">[</span><span class="s">"."</span><span class="p">]))</span>
+
+    <span class="n">cythonize</span><span class="p">(</span><span class="n">modules</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">modules</span>
+
+
+<span class="c1"># list your extensions here
+</span><span class="n">ext_modules</span> <span class="o">=</span> <span class="n">define_cython_extensions</span><span class="p">(</span>
+    <span class="s">"fibonacci_example.fast.fibonacci"</span><span class="p">,</span>
+    <span class="c1"># more extensions here!
+</span><span class="p">)</span>
+
+<span class="n">setup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">"fibonacci-example"</span><span class="p">,</span>
+      <span class="n">version</span><span class="o">=</span><span class="s">"1.0.0"</span><span class="p">,</span>
+      <span class="n">license</span><span class="o">=</span><span class="s">"MIT"</span><span class="p">,</span>
+      <span class="n">packages</span><span class="o">=</span><span class="n">find_packages</span><span class="p">(</span><span class="n">exclude</span><span class="o">=</span><span class="p">[</span><span class="s">"contrib"</span><span class="p">,</span> <span class="s">"docs"</span><span class="p">,</span> <span class="s">"tests*"</span><span class="p">]),</span>
+      <span class="n">ext_modules</span><span class="o">=</span><span class="n">ext_modules</span><span class="p">,</span>
+      <span class="n">setup_requires</span><span class="o">=</span><span class="p">[</span><span class="s">"Cython&gt;=0.24"</span><span class="p">]</span>
+    <span class="p">)</span>
+</code></pre></div></div>
+
+<p>You’ll need to install <code class="highlighter-rouge">Cython</code> if you don’t already have it installed. You can do this with: <code class="highlighter-rouge">pip install cython</code>.</p>
+
+<p>Let’s have a look at the <code class="highlighter-rouge">setup.py</code> script above. In our import statements, we need <code class="highlighter-rouge">from Cython.Build import cythonize</code>. The <code class="highlighter-rouge">cythonize</code> function compiles a list of Cython modules into C/C++ code. We also need <code class="highlighter-rouge">from setuptools import Extension</code>. This describes an extension module and everything needed to build it. The actual build process is managed by the setup script itself.</p>
+
+<p>A utility function <code class="highlighter-rouge">define_cython_extensions</code> has been provided to help configure the Cython extensions. More explanation of how to configure and build an extension will be given in future posts. For now, all that is required is that the <code class="highlighter-rouge">ext_modules</code> keyword argument is passed to the <code class="highlighter-rouge">setup</code> function with a list of extensions. Next, we need to build our extensions. In this case, in the root directory of the project we’re going to run:</p>
+
+<pre><code class="language-commandline">python setup.py build_ext --inplace
+</code></pre>
+
+<p>You should now see that your package structure looks similar to:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>+-- fibonacci_example
+|   +-- __init__.py
+|   +-- fibonacci.py
+|   +-- fast
+|       +-- __init__.py
+|       +-- fibonacci.c
+|       +-- fibonacci.cpython-36m-darwin.so
+|       +-- fibonacci.pyx
++-- setup.py
+</code></pre></div></div>
+
+<p>Where the <code class="highlighter-rouge">fibonacci.cpython-36m-darwin.so</code> binary will vary based upon your platform and Python version. To set our baseline, let’s run the pure-Python code in <code class="highlighter-rouge">fibonacci_example.fibonacci</code>. We can run:</p>
+
+<pre><code class="language-commandline">python3 -m timeit -r 10 -s 'from fibonacci_example.fibonacci import fibonacci' 'fibonacci(1000000)'
+</code></pre>
+
+<p>On my machine, my results are:</p>
+
+<p><code class="highlighter-rouge">1000000 loops, best of 10: 1.89 usec per loop</code></p>
+
+<p>Now let’s look at our new Cythonised version of the <code class="highlighter-rouge">fibonacci</code> function:</p>
+
+<pre><code class="language-commandline">python3 -m timeit -r 10 -s 'from fibonacci_example.fast.fibonacci import fibonacci' 'fibonacci(1000000)'
+</code></pre>
+
+<p>Again, my results are:</p>
+
+<p><code class="highlighter-rouge">1000000 loops, best of 10: 0.923 usec per loop</code></p>
+
+<p>That’s more than twice as fast for no changes to my code!</p>
+
+<h2 id="going-even-faster">Going Even Faster</h2>
+
+<p>Twice as fast is great, but we can definitely do better. The code snippet below shows the <code class="highlighter-rouge">fibonacci</code> function modified to use some Cython language features:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">cpdef</span> <span class="nb">int</span> <span class="n">fibonacci_faster</span><span class="p">(</span><span class="nb">int</span> <span class="n">n</span><span class="p">):</span>
+    <span class="s">"""
+    Print the Fibonacci series up to n.
+    """</span>
+    <span class="n">cdef</span> <span class="nb">int</span> <span class="n">a</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">cdef</span> <span class="nb">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+        <span class="n">a</span> <span class="o">=</span> <span class="n">b</span>
+        <span class="n">b</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+    <span class="k">return</span> <span class="n">b</span>
+</code></pre></div></div>
+
+<p>An in-depth discussion of the modifications to the function have achieved is beyond the scope of this post, but fundamentally, the function has now been defined to take advantage of Cython’s static type declaration capabilities. Adding this into the <code class="highlighter-rouge">fibonacci/fast/fibonacci.pyx</code> module and re-compiling the package, we can re-run:</p>
+
+<pre><code class="language-commandline">python3 -m timeit -r 10 -s 'from fibonacci_example.fast.fibonacci import fibonacci_faster' 'fibonacci_faster(1000000)'
+</code></pre>
+
+<p>Which gives me:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>10000000 loops, best of 10: 0.0555 usec per loop
+</code></pre></div></div>
+
+<p>That’s an almost 35x speed up over the pure Python code with surprisingly little effort!</p>
+
+<h2 id="conclusions">Conclusions</h2>
+
+<p>Hopefully this post has highlighted how straightforward it can be to get significant performance boosts to your standard Python code.
+Accordign to the Cython documentation, Cython claims that these performance increases can be in the region of 60-90% for standard Python loops and control structures, and frequently between 100-1000x faster for numerical code.</p>
+
+<p>I’ve touched on a few of Cython’s features in this post, and I’ll be digging into more details on how to get your own code Cythonised efficiently in future posts. I’ll also be giving some guidance on how you can use Cython to parallise your code effectively too. If you have any questions or suggestions for improvement, I’m always available via Twitter or through</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'Premature optimization is the root of all evil' - D. Knuth
+</code></pre></div></div>
+
+<p>a Cython compiled pybench runs more than 30% faster in total, while being 60-90% faster on control structures like if-elif-else and for-loops.</p>
+
+<h3 id="a-quick-word-of-warning">A Quick Word of Warning</h3>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+  
+
+
+  
+  
+  
+
+  <p class="page__taxonomy">
+    <strong><i class="fas fa-fw fa-tags" aria-hidden="true"></i> Tags: </strong>
+    <span itemprop="keywords">
+    
+      
+      
+      <a href="/tags/#data-science" class="page__taxonomy-item" rel="tag">data science</a><span class="sep">, </span>
+    
+      
+      
+      <a href="/tags/#python" class="page__taxonomy-item" rel="tag">Python</a>
+    
+    </span>
+  </p>
+
+
+
+
+        
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-01-05T00:00:00+00:00">January 05, 2019</time></p>
+        
+      </footer>
+
+      <section class="page__share">
+  
+    <h4 class="page__share-title">Share on</h4>
+  
+
+  <a href="https://twitter.com/intent/tweet?via=markldouthwaite&text=Introduction+to+Cython+-+Part+1%3A+Getting+Started%20http%3A%2F%2Flocalhost%3A4000%2F_posts%2F2019-01-05-IntroToCython-Part1%2F" class="btn btn--twitter" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Twitter"><i class="fab fa-fw fa-twitter" aria-hidden="true"></i><span> Twitter</span></a>
+
+  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Flocalhost%3A4000%2F_posts%2F2019-01-05-IntroToCython-Part1%2F" class="btn btn--facebook" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Facebook"><i class="fab fa-fw fa-facebook" aria-hidden="true"></i><span> Facebook</span></a>
+
+  <a href="https://plus.google.com/share?url=http%3A%2F%2Flocalhost%3A4000%2F_posts%2F2019-01-05-IntroToCython-Part1%2F" class="btn btn--google-plus" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on Google Plus"><i class="fab fa-fw fa-google-plus" aria-hidden="true"></i><span> Google+</span></a>
+
+  <a href="https://www.linkedin.com/shareArticle?mini=true&url=http%3A%2F%2Flocalhost%3A4000%2F_posts%2F2019-01-05-IntroToCython-Part1%2F" class="btn btn--linkedin" onclick="window.open(this.href, 'window', 'left=20,top=20,width=500,height=500,toolbar=1,resizable=0'); return false;" title="Share on LinkedIn"><i class="fab fa-fw fa-linkedin" aria-hidden="true"></i><span> LinkedIn</span></a>
+</section>
+
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+
+    
+      
+        
+          <li><a href="https://twitter.com/MarklDouthwaite" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+        
+      
+        
+      
+        
+          <li><a href="https://github.com/markdouthwaite" rel="nofollow noopener noreferrer"><i class="fab fa-fw fa-github" aria-hidden="true"></i> GitHub</a></li>
+        
+      
+        
+      
+        
+      
+        
+      
+    
+
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2019 Mark Douthwaite. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

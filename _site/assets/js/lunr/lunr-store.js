@@ -9,8 +9,13 @@ var store = [{
         "tags": ["data science","python"],
         "url": "http://localhost:4000/NonDataSciencePackagesForDataSciencept1tqdm/",
         "teaser":null},{
-        "title": "Reading List 2018",
+        "title": "My Reading List from 2018",
         "excerpt":"A Quick(ish) Word About Books I think there is something profoundly healthy and ‘enlightening’ about reading long-form content, both fiction and non-fiction, that is not present in short-form content like many blogs (the irony, I know!), news articles and, to some extent, academic papers. I worry – maybe wrongly –...","categories": [],
         "tags": ["books","education"],
         "url": "http://localhost:4000/ReadingList2018/",
+        "teaser":null},{
+        "title": "Introduction to Cython - Part 1: Getting Started",
+        "excerpt":"Introduction Python is one of the most popular programming languages currently in use. It’s often credited as being a highly productive language, user-friendly that is backed up by an extensive, mature and (generally) well maintained set of tools that can effectively service user demands across a wide range of fields....","categories": [],
+        "tags": ["Python","data science"],
+        "url": "http://localhost:4000/IntroToCython-Part1/",
         "teaser":null}]
