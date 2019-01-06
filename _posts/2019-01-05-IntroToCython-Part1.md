@@ -211,7 +211,7 @@ Accordign to the Cython documentation, Cython claims that these performance incr
 
 I've touched on a few of Cython's features in this post, and I'll be digging into more details on how to get your own code Cythonised efficiently in future posts. I'll also be giving some guidance on how you can use Cython to parallise your code effectively too. If you have any questions or suggestions for improvement, I'm always available via Twitter or through my [website](mark.douthwaite.io).
 
-And just one more quick word: Cython is very powerful, but always remember the valuable advice from David Knuth:
+And just one more quick word: Cython is very powerful, but always remember the valuable advice from Donald Knuth:
 
     'Premature optimization is the root of all evil' - D. Knuth
 
