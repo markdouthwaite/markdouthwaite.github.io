@@ -297,17 +297,21 @@
         
         <h2 id="introduction">Introduction</h2>
 
-<p>Python is one of the most popular programming languages currently in use. It’s often credited as being a highly productive language, user-friendly that is backed up by an extensive, mature and (generally) well maintained set of tools that can effectively service user demands across a wide range of fields. Python has enjoyed some popularity in scientific computing for quite a while now. This popularity has exploded in recent years with the adoption of Python as the de facto language of choice for a significant chunk of Artificial Intelligence (AI) research.</p>
+<p>Python is one of the most popular programming languages currently in use. It’s often credited as being a highly productive, user-friendly language that is backed up by an extensive, mature and (generally) well maintained set of tools that can effectively service user demands across a wide range of fields. Python has enjoyed some popularity in scientific computing for quite a while now. This popularity has exploded in recent years with the adoption of Python as the de facto language of choice for a significant chunk of Artificial Intelligence (AI) research.</p>
 
-<p>As positive as the general outlook for Python is at the moment, Python has some quite serious deficiencies in certain applications. Perhaps the most serious deficiency is the performance of most Python language implementations. Pure Python is often <em>horrendously</em> slow. So slow, in fact, that many of the aforementioned scientific computing and AI tools are actually forced to wrap higher-performance code in languages such as C, C++ and Fortran in Python wrappers, and expose this code as user-friendly Python modules.</p>
+<p>As positive as the general outlook for Python is at the moment, Python has some quite serious deficiencies in certain applications. One of the most serious deficiencies is the speed of most Python language implementations. Pure Python is often <em>horrendously</em> slow. So slow, in fact, that many of the aforementioned scientific computing and AI tools are actually forced to wrap higher-performance code in languages such as C, C++ and Fortran in Python wrappers, and expose this code as user-friendly Python modules.</p>
 
 <p>For Python programmers with little experience of these other languages, it might seem like a daunting task to port a Python implementation of some algorithm into C or C++ in order to get it to a point where their prototype implementation is fast enough to be useful for a given application. That’s where Cython can come in <em>very</em> useful. Cython is designed to make writing high-performance extensions for Python programs as simple as writing Python code itself.</p>
 
 <h2 id="what-is-cython">What is Cython?</h2>
 
-<p>Technically, Cython is a compiler for <em>both</em> Python and the Cython programming language. The Cython programming language is a near-complete superset of Python itself. Practically, this means that almost all Python code is valid Cython code – you can generally drop your Python code into the Cython compiler and have it work straight out-of-the-box. This raises a first important point: to use Cythonised code, you must compile your Cython modules. For those familiar with using interpreted languages, this process can seem a little odd, and sometimes can be quite confusing. We’ll look at how to compile Cython modules briefly in this post, and in more detail in future posts, but for now it is enough to know that Cython takes your Cython module, uses it to generate some efficient C or C++ code and then compiles this into a binary that is accessible as Python module.</p>
+<p>Technically, Cython is a compiler for <em>both</em> Python and the Cython programming language. The Cython programming language is a near-complete superset of Python itself. Practically, this means that almost all Python code is valid Cython code – you can generally drop your Python code into the Cython compiler and have it work straight out-of-the-box.</p>
 
-<p>This general process is enhanced by a number of additional features provided by the Cython language. The most notable of these is the introduction of optional static type declarations. The Cython compiler can use these type declarations to dramatically improve the performance of compiled Cython code. Furthermore, Cython provides support for calling C/C++ code directly within a Cython module. This means we can integrate our Python application with pre-existing C/C++ code quite easily, or even call Python code from within C/C++ code. Finally, Cython also allows us to disable Python’s Global Interpreter Lock (GIL), which can yield still greater performance boosts. Each of these capabilities will be touched on in future posts.</p>
+<p>This raises a first important point: to use Cythonised code, you must compile your Cython modules. For those familiar with using interpreted languages, this process can seem a little odd, and sometimes can be quite confusing. We’ll look at how to compile Cython modules briefly in this post, and in more detail in future posts, but for now it is enough to know that Cython takes your Cython module, uses it to generate some efficient C or C++ code and then compiles this into a binary that is accessible as Python module.</p>
+
+<p>This general process is enhanced by a number of additional features provided by the Cython language. The most notable of these is the introduction of optional static type declarations. The Cython compiler can use these type declarations to dramatically improve the performance of compiled Cython code.</p>
+
+<p>Furthermore, Cython provides support for calling C/C++ code directly within a Cython module. This means we can integrate our Python application with pre-existing C/C++ code quite easily, or even call Python code from within C/C++ code. Finally, Cython also allows us to disable Python’s Global Interpreter Lock (GIL), which can yield still greater performance boosts. Each of these capabilities will be touched on in future posts.</p>
 
 <h2 id="using-cython">Using Cython</h2>
 
@@ -480,15 +484,14 @@
 <p>Hopefully this post has highlighted how straightforward it can be to get significant performance boosts to your standard Python code.
 Accordign to the Cython documentation, Cython claims that these performance increases can be in the region of 60-90% for standard Python loops and control structures, and frequently between 100-1000x faster for numerical code.</p>
 
-<p>I’ve touched on a few of Cython’s features in this post, and I’ll be digging into more details on how to get your own code Cythonised efficiently in future posts. I’ll also be giving some guidance on how you can use Cython to parallise your code effectively too. If you have any questions or suggestions for improvement, I’m always available via Twitter or through</p>
+<p>I’ve touched on a few of Cython’s features in this post, and I’ll be digging into more details on how to get your own code Cythonised efficiently in future posts. I’ll also be giving some guidance on how you can use Cython to parallise your code effectively too. If you have any questions or suggestions for improvement, I’m always available via Twitter or through my <a href="mark.douthwaite.io">website</a>.</p>
+
+<p>And just one more quick word: Cython is very powerful, but always remember the valuable advice from David Knuth:</p>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'Premature optimization is the root of all evil' - D. Knuth
 </code></pre></div></div>
 
-<p>a Cython compiled pybench runs more than 30% faster in total, while being 60-90% faster on control structures like if-elif-else and for-loops.</p>
-
-<h3 id="a-quick-word-of-warning">A Quick Word of Warning</h3>
-
+<p>So don’t go spending hours trying to optimise your code until you’ve arrived at a good solution, and identified concrete benefits from doing this.</p>
 
         
       </section>

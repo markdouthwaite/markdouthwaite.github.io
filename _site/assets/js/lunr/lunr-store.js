@@ -15,7 +15,7 @@ var store = [{
         "url": "http://localhost:4000/ReadingList2018/",
         "teaser":null},{
         "title": "Introduction to Cython - Part 1: Getting Started",
-        "excerpt":"Introduction Python is one of the most popular programming languages currently in use. It’s often credited as being a highly productive language, user-friendly that is backed up by an extensive, mature and (generally) well maintained set of tools that can effectively service user demands across a wide range of fields....","categories": [],
+        "excerpt":"Introduction Python is one of the most popular programming languages currently in use. It’s often credited as being a highly productive, user-friendly language that is backed up by an extensive, mature and (generally) well maintained set of tools that can effectively service user demands across a wide range of fields....","categories": [],
         "tags": ["Python","data science"],
         "url": "http://localhost:4000/IntroToCython-Part1/",
         "teaser":null}]
