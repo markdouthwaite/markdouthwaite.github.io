@@ -2,23 +2,29 @@
 title: "Introduction to Cython - Part 1: Getting Started"
 layout: single
 author_profile: true
-date: 2019-01-05
+date: 2019-08-06
 tags: [Python, data science]
 excerpt: "This post gives a quick introduction on how to accelerate your Python code using Cython."
 share: true
+
+header:
+    teaser: /images/Cython-logo.svg
+
 ---
+
+<div style="text-align:center"><img src="/images/Cython-logo.svg" /></div>
+
+This post looks at how you can go about getting some pretty impressive speed boosts in your Python code with surprisingly little effort with Cython, a programming language and compiler that is designed to enable straightforward interoperability between Python, C/C++ and the eponymous Cython language.
 
 ## What is Cython?
 
-In this post, I'm going to give a brief overview of what Cython is, and how it can be used to boost the performance of your pure Python code with relatively little effort. First off, what is Cython? Cython is a compiler for both Python and the Cython programming language. The Cython programming language is a near-complete superset of Python itself. Practically, this means that almost all Python code is valid Cython code – you can generally drop your Python code into the Cython compiler and have it work straight out-of-the-box.
+If you've worked in Python's scientific programming world for any length of time, chances are you will have at least heard of Cython. It's used in one way or another in packages ranging from the ubiquitous NumPy, SciPy and Scikit-Learn packages, through to the likes of [Implicit]() and [LightFM](), and even [TensorFlow]().
 
-This raises an important distinction with respect to a normal Python workflow: to run Cythonised code, you will need to explicitly compile your Cython modules, first to C or C++, and then to binaries. The benefit of this compilation step is that Cython can optimise your Python or Cython modules at compile time, often dramatically improving the performance of your Python code at runtime. The Cython language also allows us to _optionally_ use static types in our Cython modules. Making use of extended features such as this can further boost the performance of a given module, though for those unfamiliar with statically typed languages, this may get a bit fiddly.
-
-Finally, while the Cython compiler allows us to write modules using the Python and Cython languages as we choose, it also allows us to write C or C++ code and directly interface this code with our pure Python modules too. A future post will cover how you can do this, but suffice it to say -- this can come in very handy if you need to access C or C++ speed and/or functionality from Python. This means you can also do GPU programming in C/C++ with CUDA, and access this code from your user-friendly Python package.
+Cython is a programming language and compiler. As a programming language, Cython is a near-complete superset of Python: almost all Python code is valid Cython code, and can therefore be compiled with the Cython compiler. Consequently, you can simply drop your Python code into the Cython compiler and have it generate some nicely optimised C binaries that you can access from your other Python code. That's what this post looks at: what sort of performance boosts can we get by dropping a simple calculation into Cython?
 
 ## Time to Cythonise
 
-Let's write some Cython. It's worth noting that I'm assuming the reader is familiar with Python and how to package and install their own Python modules. If you're not sure how to do this, there's a good guide from the Python packaging site [here](https://python-packaging.readthedocs.io/en/latest/minimal.html). The code for this post is available [here](https://github.com/markdouthwaite/cython-examples). The examples require Python >= 3.5.
+To answer this, let's write some Cython. It's worth noting that I'm assuming the reader is familiar with Python and how to package and install their own Python modules. If you're not sure how to do this, there's a good guide from the Python packaging site [here](https://python-packaging.readthedocs.io/en/latest/minimal.html). The code for this post is available [here](https://github.com/markdouthwaite/cython-examples). The examples require Python >= 3.5.
 
 To start, we're going to look at a very simple calculation -- computing the Fibonacci sequence up to an arbitrary value of `n`. This is the canonical Cython example. Here is a pure-Python function that does this:
 
@@ -196,7 +202,7 @@ Which gives me:
 10000000 loops, best of 10: 0.0555 usec per loop
 ```
 
-That's an almost 35x speed up over the pure Python code with surprisingly little effort!
+That's an almost 35x speed up over the pure Python code with surprisingly little effort! We'll look into the details of this snippet in the next post.
 
 ## Conclusions
 

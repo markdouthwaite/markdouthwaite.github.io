@@ -1,0 +1,18 @@
+
+brew install minikube
+
+brew cask install virtualbox
+
+On Mac: Might have permissions issues - make sure to Security & Privacy -> Allow Oracle.
+
+And can try: brew cask install --force virtualbox
+
+minikube start
+
+minikube dashboard
+
+
+
+## Golang
+
+sudo rm -rfv /usr/local/go

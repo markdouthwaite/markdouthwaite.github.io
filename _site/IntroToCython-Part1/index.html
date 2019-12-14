@@ -10,30 +10,34 @@
     <meta charset="utf-8">
 
 <!-- begin _includes/seo.html --><title>Introduction to Cython - Part 1: Getting Started - Mark Douthwaite</title>
-<meta name="description" content="Python is slow. Use C or C++ if you need to do high-performance computing. That’s the common wisdom. But Cython can let us write code in nearly pure Python and can yield huge speed boosts. It also lets us call C/C++ code directly from Python. This can be a huge productivity boost too.">
+<meta name="description" content="This post gives a quick introduction on how to accelerate your Python code using Cython.">
 
 
 
 <meta property="og:type" content="article">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="en_GB">
 <meta property="og:site_name" content="Mark Douthwaite">
 <meta property="og:title" content="Introduction to Cython - Part 1: Getting Started">
 <meta property="og:url" content="http://localhost:4000/IntroToCython-Part1/">
 
 
-  <meta property="og:description" content="Python is slow. Use C or C++ if you need to do high-performance computing. That’s the common wisdom. But Cython can let us write code in nearly pure Python and can yield huge speed boosts. It also lets us call C/C++ code directly from Python. This can be a huge productivity boost too.">
+  <meta property="og:description" content="This post gives a quick introduction on how to accelerate your Python code using Cython.">
 
 
+
+  <meta property="og:image" content="http://localhost:4000/images/Cython-logo.svg">
 
 
 
   <meta name="twitter:site" content="@markldouthwaite">
   <meta name="twitter:title" content="Introduction to Cython - Part 1: Getting Started">
-  <meta name="twitter:description" content="Python is slow. Use C or C++ if you need to do high-performance computing. That’s the common wisdom. But Cython can let us write code in nearly pure Python and can yield huge speed boosts. It also lets us call C/C++ code directly from Python. This can be a huge productivity boost too.">
+  <meta name="twitter:description" content="This post gives a quick introduction on how to accelerate your Python code using Cython.">
   <meta name="twitter:url" content="http://localhost:4000/IntroToCython-Part1/">
 
   
     <meta name="twitter:card" content="summary">
+    
+      <meta name="twitter:image" content="http://localhost:4000/images/Cython-logo.svg">
     
   
 
@@ -41,7 +45,7 @@
 
 
 
-  <meta property="article:published_time" content="2019-01-05T00:00:00+00:00">
+  <meta property="article:published_time" content="2019-08-06T00:00:00+01:00">
 
 
 
@@ -133,6 +137,12 @@
               <a href="/projects/" >Projects</a>
             </li></ul>
         
+        <button class="search__toggle" type="button">
+          <svg class="icon" width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15.99 16">
+            <path d="M15.5,13.12L13.19,10.8a1.69,1.69,0,0,0-1.28-.55l-0.06-.06A6.5,6.5,0,0,0,5.77,0,6.5,6.5,0,0,0,2.46,11.59a6.47,6.47,0,0,0,7.74.26l0.05,0.05a1.65,1.65,0,0,0,.5,1.24l2.38,2.38A1.68,1.68,0,0,0,15.5,13.12ZM6.4,2A4.41,4.41,0,1,1,2,6.4,4.43,4.43,0,0,1,6.4,2Z" transform="translate(-.01)"></path>
+          </svg>
+        </button>
+        
         <button class="greedy-nav__toggle hidden" type="button">
           <span class="visually-hidden">Toggle menu</span>
           <div class="navicon"></div>
@@ -147,6 +157,32 @@
     <div class="initial-content">
       
 
+
+  
+    
+
+
+
+<nav class="breadcrumbs">
+  <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+    
+    
+    
+      
+        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+          <a href="http://localhost:4000/" itemprop="item"><span itemprop="name">Home</span></a>
+          <meta itemprop="position" content="1" />
+        </li>
+        <span class="sep">/</span>
+      
+      
+        <li class="current">Introduction to Cython - Part 1: Getting Started</li>
+      
+    
+  </ol>
+</nav>
+
+  
 
 
 <div id="main" role="main">
@@ -280,8 +316,8 @@
 
   <article class="page" itemscope itemtype="https://schema.org/CreativeWork">
     <meta itemprop="headline" content="Introduction to Cython - Part 1: Getting Started">
-    <meta itemprop="description" content="Python is slow. Use C or C++ if you need to do high-performance computing. That’s the common wisdom. But Cython can let us write code in nearly pure Python and can yield huge speed boosts. It also lets us call C/C++ code directly from Python. This can be a huge productivity boost too.">
-    <meta itemprop="datePublished" content="January 05, 2019">
+    <meta itemprop="description" content="This post gives a quick introduction on how to accelerate your Python code using Cython.">
+    <meta itemprop="datePublished" content="August 06, 2019">
     
 
     <div class="page__inner-wrap">
@@ -290,42 +326,26 @@
           <h1 id="page-title" class="page__title" itemprop="headline">Introduction to Cython - Part 1: Getting Started
 </h1>
           
-            <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  7 minute read
-</p>
-          
         </header>
       
 
       <section class="page__content" itemprop="text">
         
-        <h2 id="introduction">Introduction</h2>
+        <div style="text-align:center"><img src="/images/Cython-logo.svg" /></div>
 
-<p>Python is one of the most popular programming languages currently in use. It’s often credited as being a highly productive, user-friendly language that is backed up by an extensive, mature and (generally) well maintained set of tools that can effectively service user demands across a wide range of fields. Python has enjoyed some popularity in scientific computing for quite a while now. This popularity has exploded in recent years with the adoption of Python as the de facto language of choice for a significant chunk of Artificial Intelligence (AI) research.</p>
-
-<p>As positive as the general outlook for Python is at the moment, Python has some quite serious deficiencies in certain applications. One of the most serious deficiencies is the speed of most Python language implementations. Pure Python is often <em>horrendously</em> slow. So slow, in fact, that many of the aforementioned scientific computing and AI tools are actually forced to wrap higher-performance code in languages such as C, C++ and Fortran in Python wrappers, and expose this code as user-friendly Python modules.</p>
-
-<p>For Python programmers with little experience of these other languages, it might seem like a daunting task to port a Python implementation of some algorithm into C or C++ in order to get it to a point where their prototype implementation is fast enough to be useful for a given application. That’s where Cython can come in <em>very</em> useful. Cython is designed to make writing high-performance extensions for Python programs as simple as writing Python code itself.</p>
+<p>This post looks at how you can go about getting some pretty impressive speed boosts in your Python code with surprisingly little effort with Cython, a programming language and compiler that is designed to enable straightforward interoperability between Python, C/C++ and the eponymous Cython language.</p>
 
 <h2 id="what-is-cython">What is Cython?</h2>
 
-<p>Technically, Cython is a compiler for <em>both</em> Python and the Cython programming language. The Cython programming language is a near-complete superset of Python itself. Practically, this means that almost all Python code is valid Cython code – you can generally drop your Python code into the Cython compiler and have it work straight out-of-the-box.</p>
+<p>If you’ve worked in Python’s scientific programming world for any length of time, chances are you will have at least heard of Cython. It’s used in one way or another in packages ranging from the ubiquitous NumPy, SciPy and Scikit-Learn packages, through to the likes of <a href="">Implicit</a> and <a href="">LightFM</a>, and even <a href="">TensorFlow</a>.</p>
 
-<p>This raises a first important point: to use Cythonised code, you must compile your Cython modules. For those familiar with using interpreted languages, this process can seem a little odd, and sometimes can be quite confusing. We’ll look at how to compile Cython modules briefly in this post, and in more detail in future posts, but for now it is enough to know that Cython takes your Cython module, uses it to generate some efficient C or C++ code and then compiles this into a binary that is accessible as Python module.</p>
+<p>Cython is a programming language and compiler. As a programming language, Cython is a near-complete superset of Python: almost all Python code is valid Cython code, and can therefore be compiled with the Cython compiler. Consequently, you can simply drop your Python code into the Cython compiler and have it generate some nicely optimised C binaries that you can access from your other Python code. That’s what this post looks at: what sort of performance boosts can we get by dropping a simple calculation into Cython?</p>
 
-<p>This general process is enhanced by a number of additional features provided by the Cython language. The most notable of these is the introduction of optional static type declarations. The Cython compiler can use these type declarations to dramatically improve the performance of compiled Cython code.</p>
+<h2 id="time-to-cythonise">Time to Cythonise</h2>
 
-<p>Furthermore, Cython provides support for calling C/C++ code directly within a Cython module. This means we can integrate our Python application with pre-existing C/C++ code quite easily, or even call Python code from within C/C++ code. Finally, Cython also allows us to disable Python’s Global Interpreter Lock (GIL), which can yield still greater performance boosts. Each of these capabilities will be touched on in future posts.</p>
+<p>To answer this, let’s write some Cython. It’s worth noting that I’m assuming the reader is familiar with Python and how to package and install their own Python modules. If you’re not sure how to do this, there’s a good guide from the Python packaging site <a href="https://python-packaging.readthedocs.io/en/latest/minimal.html">here</a>. The code for this post is available <a href="https://github.com/markdouthwaite/cython-examples">here</a>. The examples require Python &gt;= 3.5.</p>
 
-<h2 id="using-cython">Using Cython</h2>
-
-<p>Enough of my waffling, let’s write some Cython. It’s worth noting that I’m assuming the reader is familiar with Python and how to package and install their own Python modules. If you’re not sure how to do this, there’s a great guide <a href="">here</a>. The code for this post is available <a href="">here</a>, and has an accompanying notebook <a href="">here</a> too. The examples use Python &gt;= 3.5.</p>
-
-<p>To start, we’re going to look at a very simple calculation: computing the Fibonacci sequence up to an arbitrary value <code class="highlighter-rouge">n</code>. Here is a pure-Python function that does this:</p>
+<p>To start, we’re going to look at a very simple calculation – computing the Fibonacci sequence up to an arbitrary value of <code class="highlighter-rouge">n</code>. This is the canonical Cython example. Here is a pure-Python function that does this:</p>
 
 <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># fibonacci_example/fibonacci.py
 </span><span class="k">def</span> <span class="nf">fibonacci</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
@@ -379,10 +399,10 @@
     <span class="k">return</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="o">*</span><span class="n">import_path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s">"."</span><span class="p">))</span><span class="o">+</span><span class="n">ext</span>
 
 
-<span class="k">def</span> <span class="nf">define_cython_extensions</span><span class="p">(</span><span class="o">*</span><span class="n">extensions</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> 
-                             <span class="n">link_args</span><span class="p">:</span> <span class="nb">list</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
-                             <span class="n">compile_args</span><span class="p">:</span> <span class="nb">list</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> 
-                             <span class="n">language</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s">"c"</span><span class="p">,</span> 
+<span class="k">def</span> <span class="nf">define_cython_extensions</span><span class="p">(</span><span class="o">*</span><span class="n">extensions</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                             <span class="n">link_args</span><span class="p">:</span> <span class="nb">list</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                             <span class="n">compile_args</span><span class="p">:</span> <span class="nb">list</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span>
+                             <span class="n">language</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s">"c"</span><span class="p">,</span>
                              <span class="n">file_ext</span><span class="p">:</span> <span class="nb">str</span><span class="o">=</span><span class="s">".pyx"</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">:</span>
     <span class="s">"""
     Build a list of Cython extension modules.
@@ -419,9 +439,9 @@
 
 <p>You’ll need to install <code class="highlighter-rouge">Cython</code> if you don’t already have it installed. You can do this with: <code class="highlighter-rouge">pip install cython</code>.</p>
 
-<p>Let’s have a look at the <code class="highlighter-rouge">setup.py</code> script above. In our import statements, we need <code class="highlighter-rouge">from Cython.Build import cythonize</code>. The <code class="highlighter-rouge">cythonize</code> function compiles a list of Cython modules into C/C++ code. We also need <code class="highlighter-rouge">from setuptools import Extension</code>. This describes an extension module and everything needed to build it. The actual build process is managed by the setup script itself.</p>
+<p>Let’s have a look at the <code class="highlighter-rouge">setup.py</code> script above. In our import statements, we need <code class="highlighter-rouge">from Cython.Build import cythonize</code>. The <code class="highlighter-rouge">cythonize</code> function compiles a list of Cython modules into C/C++ code. We also need <code class="highlighter-rouge">from setuptools import Extension</code>. This describes an extension module and everything needed to build it. By default, the build process is managed by the setup script itself.</p>
 
-<p>A utility function <code class="highlighter-rouge">define_cython_extensions</code> has been provided to help configure the Cython extensions. More explanation of how to configure and build an extension will be given in future posts. For now, all that is required is that the <code class="highlighter-rouge">ext_modules</code> keyword argument is passed to the <code class="highlighter-rouge">setup</code> function with a list of extensions. Next, we need to build our extensions. In this case, in the root directory of the project we’re going to run:</p>
+<p>I’ve added a utility function <code class="highlighter-rouge">define_cython_extensions</code> to help configure the Cython extensions. More explanation of how to configure and build an extension will be given in future posts. For now, all that is required is that the <code class="highlighter-rouge">ext_modules</code> keyword argument is passed to the <code class="highlighter-rouge">setup</code> function with a list of extensions. Next, we need to build our extensions. In this case, in the root directory of the project we’re going to run:</p>
 
 <pre><code class="language-commandline">python setup.py build_ext --inplace
 </code></pre>
@@ -439,7 +459,11 @@
 +-- setup.py
 </code></pre></div></div>
 
-<p>Where the <code class="highlighter-rouge">fibonacci.cpython-36m-darwin.so</code> binary will vary based upon your platform and Python version. To set our baseline, let’s run the pure-Python code in <code class="highlighter-rouge">fibonacci_example.fibonacci</code>. We can run:</p>
+<p>Where the <code class="highlighter-rouge">fibonacci.cpython-36m-darwin.so</code> binary will vary based upon your platform and Python version.</p>
+
+<h2 id="benchmarking">Benchmarking</h2>
+
+<p>Now to testing. To set our baseline benchmark, let’s run the pure-Python code in <code class="highlighter-rouge">fibonacci_example.fibonacci</code>. We can run:</p>
 
 <pre><code class="language-commandline">python3 -m timeit -r 10 -s 'from fibonacci_example.fibonacci import fibonacci' 'fibonacci(1000000)'
 </code></pre>
@@ -459,7 +483,7 @@
 
 <p>That’s more than twice as fast for no changes to my code!</p>
 
-<h2 id="going-even-faster">Going Even Faster</h2>
+<h2 id="more-acceleration">More Acceleration</h2>
 
 <p>Twice as fast is great, but we can definitely do better. The code snippet below shows the <code class="highlighter-rouge">fibonacci</code> function modified to use some Cython language features:</p>
 
@@ -475,7 +499,7 @@
     <span class="k">return</span> <span class="n">b</span>
 </code></pre></div></div>
 
-<p>An in-depth discussion of the modifications to the function have achieved is beyond the scope of this post, but fundamentally, the function has now been defined to take advantage of Cython’s static type declaration capabilities. Adding this into the <code class="highlighter-rouge">fibonacci/fast/fibonacci.pyx</code> module and re-compiling the package, we can re-run:</p>
+<p>Here we’re using Cython’s static type definitions. We won’t go into detail on the syntax and variants of these here, but fundamentally, this will give us some additional speed boosts! Adding this into the <code class="highlighter-rouge">fibonacci/fast/fibonacci.pyx</code> module and re-compiling the package, we can re-run:</p>
 
 <pre><code class="language-commandline">python3 -m timeit -r 10 -s 'from fibonacci_example.fast.fibonacci import fibonacci_faster' 'fibonacci_faster(1000000)'
 </code></pre>
@@ -485,7 +509,7 @@
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>10000000 loops, best of 10: 0.0555 usec per loop
 </code></pre></div></div>
 
-<p>That’s an almost 35x speed up over the pure Python code with surprisingly little effort!</p>
+<p>That’s an almost 35x speed up over the pure Python code with surprisingly little effort! We’ll look into the details of this snippet in the next post.</p>
 
 <h2 id="conclusions">Conclusions</h2>
 
@@ -499,7 +523,7 @@ Accordign to the Cython documentation, Cython claims that these performance incr
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>'Premature optimization is the root of all evil' - D. Knuth
 </code></pre></div></div>
 
-<p>So don’t go spending hours trying to optimise your code until you’ve arrived at a good solution, and identified concrete benefits from doing this.</p>
+<p>So don’t go spending hours trying to optimise your code until you’ve arrived at a good solution, and identified concrete benefits from doing this. But when you reach the point you <em>must</em> optimise, Cython could be a good bet!</p>
 
         
       </section>
@@ -533,7 +557,7 @@ Accordign to the Cython documentation, Cython claims that these performance incr
 
 
         
-          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-01-05T00:00:00+00:00">January 05, 2019</time></p>
+          <p class="page__date"><strong><i class="fas fa-fw fa-calendar-alt" aria-hidden="true"></i> Updated:</strong> <time datetime="2019-08-06T00:00:00+01:00">August 06, 2019</time></p>
         
       </footer>
 
@@ -555,7 +579,7 @@ Accordign to the Cython documentation, Cython claims that these performance incr
       
   <nav class="pagination">
     
-      <a href="/ReadingList2018/" class="pagination--pager" title="My Reading List from 2018
+      <a href="/ReadingList2018/" class="pagination--pager" title="Reading List (2018)
 ">Previous</a>
     
     
@@ -570,100 +594,15 @@ Accordign to the Cython documentation, Cython claims that these performance incr
 
   
   
-    <div class="page__related">
-      <h4 class="page__related-title">You may also enjoy</h4>
-      <div class="grid__wrapper">
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/ReadingList2018/" rel="permalink">My Reading List from 2018
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  6 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">I’ve decided to jump on the bandwagon and give a list of my favourite books of 2019. There’s also some thoughts on the importance of books more generally too.
-</p>
-  </article>
 </div>
 
-        
-          
+    </div>
 
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
     
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/NonDataSciencePackagesForDataSciencept1tqdm/" rel="permalink">Python Utilities for Data Scientists - Part 1: tqdm
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  2 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Data Scientists can sometimes make life difficult for themselves simply because the focus of their work is relatively narrow in comparison to the capabilitie...</p>
-  </article>
-</div>
-
-        
-          
-
-
-
-<div class="grid__item">
-  <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
-    
-    <h2 class="archive__item-title" itemprop="headline">
-      
-        <a href="/ReservoirComputers/" rel="permalink">Reservoir Computing: Turning almost any object into a computer
-</a>
-      
-    </h2>
-    
-      <p class="page__meta"><i class="far fa-clock" aria-hidden="true"></i> 
-
-
-
-
-  3 minute read
-</p>
-    
-    <p class="archive__item-excerpt" itemprop="description">Reservoir computers exploit the physical properties of a material in its natural state to do part of a computation. This contrasts with the current digital c...</p>
-  </article>
-</div>
-
-        
+      <div class="search-content">
+        <div class="search-content__inner-wrap"><input type="text" id="search" class="search-input" tabindex="-1" placeholder="Enter your search term..." />
+    <div id="results" class="results"></div></div>
       </div>
-    </div>
-  
-  
-</div>
-
-    </div>
-
     
 
     <div class="page__footer">
@@ -712,6 +651,10 @@ Accordign to the Cython documentation, Cython claims that these performance incr
 
 
 
+
+<script src="/assets/js/lunr/lunr.min.js"></script>
+<script src="/assets/js/lunr/lunr-store.js"></script>
+<script src="/assets/js/lunr/lunr-en.js"></script>
 
 
 
